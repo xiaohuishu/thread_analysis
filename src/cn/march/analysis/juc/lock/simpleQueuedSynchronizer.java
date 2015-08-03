@@ -93,9 +93,7 @@
 		//定义一个Sync抽象类继承AbstractQueuedSynchronizer类,实现一些操作方法
 		static abstract class Sync extends AbstractQueuedSynchronizer {
 	
-			/**
-				 * 
-				 */
+			
 			private static final long serialVersionUID = 1L;
 	
 			
