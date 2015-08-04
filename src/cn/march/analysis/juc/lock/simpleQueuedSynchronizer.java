@@ -99,7 +99,7 @@
 			
 			//加锁抽象方法
 			abstract void lock();
-	
+
 			//非公平锁拿到线程状态
 			final boolean nonfairTryAcquire(int acquires) {
 	
