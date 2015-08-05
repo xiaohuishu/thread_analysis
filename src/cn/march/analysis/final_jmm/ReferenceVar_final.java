@@ -38,7 +38,7 @@ public class ReferenceVar_final {
 		//int i = 0;
 
 		// while (i++ <= 100) {
-
+		
 		new Thread(() -> {
 
 			ReferenceVar_final.writerInstance();

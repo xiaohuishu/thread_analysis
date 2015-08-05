@@ -2,8 +2,14 @@ package cn.march.analysis.final_jmm;
 
 public class BasicVar_final {
 
-	final int intVar_final;
+	static final int intVar_final ;
 
+	static{
+		
+		intVar_final = 1;
+		
+	}
+	
 	static BasicVar_final instance;
 
 	// public volatile boolean isFlag = false;
@@ -16,7 +22,6 @@ public class BasicVar_final {
 
 		intVar = 2;
 
-		intVar_final = 2;
 
 	}
 
@@ -46,7 +51,7 @@ public class BasicVar_final {
 	 * }
 	 */
 	public static void main(String[] args) throws InterruptedException {
-
+				
 		//int i = 0;
 
 		new Thread(() -> {
