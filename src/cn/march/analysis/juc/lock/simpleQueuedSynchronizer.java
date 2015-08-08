@@ -41,7 +41,7 @@
 		public static void main(String[] args) {
 	
 			simpleQueuedSynchronizer simSync = new simpleQueuedSynchronizer();
-	
+				
 			for (int j = 0; j < 10; j++) {
 	
 				new Thread(() -> {
