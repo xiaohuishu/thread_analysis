@@ -1,53 +1,58 @@
-package cn.march.analysis.juc.lock.java8.revise;
+	
 
-public class Counter {
-	
-	private int count = 0;
-	
-	private final SynchronizerRevise sync;
+
+	package cn.march.analysis.juc.lock.java8.revise;
 	
 	
 	
-	public Counter() {
+	public class Counter {
 		
-		sync = new SynchronizerRevise();
-	
-	}
-	
-	public int next(Operator<Integer> operator) {
+		private int count = 0;
 		
-		sync.lock();
+		private final SynchronizerRevise sync;
 		
-		try {
+		
+		
+		public Counter() {
 			
-			return operator.execute(count);
-			
-		}finally {
-			
-			sync.unlock();
-			
+			sync = new SynchronizerRevise();
+		
 		}
 		
-	}
-	
-	
-	public static void main(String[] args) {
-		
-		Counter count1 = new Counter();
-		
-		for(int i = 0; i < 10; i++) {
+		public int next(Operator<Integer> operator) {
 			
-
-			System.out.println(count1.next( count -> {
+			sync.lock();
+			
+			try {
 				
-				count1.count = count++;
+				return operator.execute(count);
 				
-				return ++count;
-			}));	
+			}finally {
+				
+				sync.unlock();
+				
+			}
 			
 		}
 		
 		
+		public static void main(String[] args) {
+			
+			Counter count1 = new Counter();
+			
+			for(int i = 0; i < 10; i++) {
+				
+	
+				System.out.println(count1.next( count -> {
+					
+					count1.count = count++;
+					
+					return ++count;
+				}));	
+				
+			}
+			
+			
+		}
+	
 	}
-
-}
