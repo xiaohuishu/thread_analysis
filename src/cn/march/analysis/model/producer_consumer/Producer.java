@@ -10,10 +10,18 @@
 	import java.io.IOException;
 	
 	
-	
+	/**
+	 * 生产者线程:
+	 * 		向产品queue中添加物品(调用SharedQueue.add()操作);
+	 * 
+	 * @author antsmarth
+	 *
+	 */
 	public class Producer extends Thread{
 	
+		//从文件中读取物品
 		private final static String FILENAME = "input.txt";
+		//产品集合
 		private final SharedQueue queue;
 		
 		public Producer(SharedQueue queue) {

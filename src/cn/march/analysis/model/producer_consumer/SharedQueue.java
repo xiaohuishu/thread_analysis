@@ -9,22 +9,52 @@
 	import java.util.concurrent.locks.ReentrantLock;
 	
 	
-	
+	/**
+	 * 产品集合：
+	 * 		使用Lock对象来完成数据的同步：
+	 * 		使用Lock.newCondition() --> Condition对象来完成互斥
+	 * 			创建1个Condition代表产品队列是否为空
+	 * 			创建1个Condition代表产品队列是否满
+	 * 
+	 * 		定义2个操作：
+	 * 
+	 * 			1.add()
+	 * 				如果队列中的物品满了：
+	 * 				if(current >= elems.length)
+	 * 					isFull.await();
+	 * 				则让add操作进行等待;
+	 * 
+	 * 				isEmpty.singal()唤醒remove()操作
+	 * 			
+	 * 			2.remove()
+	 * 				如果队列中物品为空：
+	 * 				if(current <= 0)
+	 * 					isEmpty.await();
+	 * 				则让remove操作进行等待
+	 * 		
+	 * 				isFull.singal()唤醒add()操作
+	 * 	
+	 * 
+	 * @author antsmarth
+	 *
+	 */
 	public class SharedQueue {
 	
-		
+		//存储的物品集合
 		private Object[] elems = null;
 		
+		//当前物品数量
 		private int current = 0;
 		
 		private int placeIndex = 0;
 		
 		private int removeIndex = 0;
 		
+		//锁对象
 		private final Lock lock = new ReentrantLock();
 		
+		//是否为空,是否满
 		private final Condition isEmpty = lock.newCondition();
-		
 		private final Condition isFull = lock.newCondition();
 		
 		
@@ -41,6 +71,11 @@
 			
 		}
 		
+		/**
+		 * add操作
+		 * @param elem
+		 * @throws InterruptedException
+		 */
 		public void add(Object elem) throws InterruptedException {
 			
 			lock.lock();
@@ -60,7 +95,11 @@
 			
 		}
 		
-		
+		/**
+		 * remove操作
+		 * @return
+		 * @throws InterruptedException
+		 */
 		public Object remove() throws InterruptedException {
 			
 			Object elem = null;
