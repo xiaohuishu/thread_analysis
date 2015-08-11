@@ -5,12 +5,18 @@
 	
 	
 	
-	
+	/**
+	 * 使用final声明基本数据类型(int)intVar_final
+	 * 对其进行多线程操作是否是线程安全;
+	 * @author antsmarth
+	 *
+	 */
 	public class BasicVar_final {
 	
+		//操作数
 		final int intVar_final ;
 	
-		
+		//对象引用
 		static BasicVar_final instance;
 	
 		// public volatile boolean isFlag = false;
@@ -56,12 +62,14 @@
 					
 			//int i = 0;
 	
+			//线程A
 			new Thread(() -> {
 	
 				instance = new BasicVar_final();
 	
 			}).start();
 	
+			//线程B
 			new Thread(() -> {
 	
 				BasicVar_final obj = instance;

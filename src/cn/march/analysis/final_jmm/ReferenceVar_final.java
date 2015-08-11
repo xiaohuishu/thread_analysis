@@ -6,9 +6,16 @@
 	
 	
 	
-	
+	/**
+	 * 
+	 * 使用final声明对象引用(int [])referVal_final
+	 * 对其进行多线程操作是否是线程安全;
+	 * @author antsmarth
+	 *
+	 */
 	public class ReferenceVar_final {
 	
+		//操作对象
 		final int[] referVar_final;
 	
 		static ReferenceVar_final instance;
@@ -45,19 +52,22 @@
 			int i = 0;
 	
 			while (i++ <= 100) {
-	
+				
+				//线程A
 				new Thread(() -> {
 	
 					ReferenceVar_final.writerInstance();
 	
 				}).start();
 	
+				//线程B
 				new Thread(() -> {
 	
 					ReferenceVar_final.writerReferVar();
 	
 				}).start();
 	
+				//线程C
 				new Thread(() -> {
 	
 					ReferenceVar_final.reader();
