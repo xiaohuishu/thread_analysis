@@ -26,7 +26,7 @@
 	
 		//测试方法
 		public static void main(String[] args) throws Exception {
-	
+		
 			long startMills = System.currentTimeMillis();
 	
 			FileSizeCalc fileCalc = new FileSizeCalc();
