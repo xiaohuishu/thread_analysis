@@ -67,7 +67,7 @@
 		
 		public SharedQueue() {
 			
-			this.elems = new Object[16];
+			this(16);
 			
 		}
 		
